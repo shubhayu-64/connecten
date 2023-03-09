@@ -46,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            LockButton(),
+              LockButton(),
               socialCard(context),
             ],
           ),
@@ -59,7 +59,6 @@ class LockButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final _userDetails = ref.watch(userDetailsProvider);
     final _databaseUser = ref.watch(databaseProvider);
 
@@ -76,15 +75,14 @@ class LockButton extends ConsumerWidget {
           ),
           textAlign: TextAlign.left,
         ),
-    IconButton(onPressed: (){
-    _userDetails.value!.isPrivate = !_userDetails.value!.isPrivate;
-    _databaseUser.updateUserData(_userDetails.value!);
-    _userDetails.value!.isPrivate ? {toastWidget("Profile Locked")
-    } : toastWidget("Profile Unlocked");
-    },
-    icon: Icon(profileState ? Icons.lock_rounded : Icons.lock_open_rounded,)),
+        // IconButton(onPressed: (){
+        // _userDetails.value!.isPrivate = !_userDetails.value!.isPrivate;
+        // _databaseUser.updateUserData(_userDetails.value!);
+        // _userDetails.value!.isPrivate ? {toastWidget("Profile Locked")
+        // } : toastWidget("Profile Unlocked");
+        // },
+        // icon: Icon(profileState ? Icons.lock_rounded : Icons.lock_open_rounded,)),
       ],
     );
   }
 }
-

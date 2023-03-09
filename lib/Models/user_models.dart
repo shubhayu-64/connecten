@@ -11,7 +11,7 @@ class UserModel {
   String? twitter;
   String? portfolio;
   bool isPrivate;
-  int coins = 0;
+  int coins;
 
   UserModel({
     required this.uid,
