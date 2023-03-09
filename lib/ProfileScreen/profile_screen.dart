@@ -5,11 +5,9 @@ import 'package:ConnecTen/ProfileScreen/widgets/social_cards.dart';
 import 'package:ConnecTen/ProfileScreen/widgets/toggle_button.dart';
 import 'package:ConnecTen/Providers/database_provider.dart';
 import 'package:ConnecTen/utils/colors.dart';
-import 'package:ConnecTen/utils/fluttertoast.dart';
 import 'package:ConnecTen/utils/size_config.dart';
 import 'package:ConnecTen/widgets/appbar.dart';
 import 'package:ConnecTen/widgets/drawer.dart';
-import 'package:sliding_switch/sliding_switch.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -46,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              LockButton(),
+              // LockButton(),
               socialCard(context),
             ],
           ),

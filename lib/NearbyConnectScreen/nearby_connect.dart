@@ -20,7 +20,7 @@ class NearbyConnect extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cp = ref.watch(connectionProvider);
     final _databaseProvider =
-        ref.watch(nearbyConnectionsProvider(cp.connections));
+    ref.watch(nearbyConnectionsProvider(cp.connections));
     print("-------Connection IDs-------");
     print(cp.connections);
 
@@ -54,46 +54,24 @@ class NearbyConnect extends ConsumerWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const ToggleButton(),
                   SizedBox(height: screenHeight! * .02),
                   SingleChildScrollView(
                     child: Container(
                         height: screenHeight! * 0.6,
                         //height: Get.height*0.5,
-                        // child: StreamBuilder(
-                        //     stream: _cpstream,
-                        //     builder: (context, snapshot) {
-                        //       if (snapshot.hasData) {
-                        //         return ListView.builder(
-                        //             itemCount: userData!.length,
-                        //             itemBuilder: (context, i) {
-                        //               print("object");
-                        //               //return Connect(userdata["fullname"], userdata["designation"]);
-                        //               return Connect(userData[i], userData[i].name,
-                        //                   userData[i].designation, context);
-                        //             });
-                        //       } else {
-                        //         return const Center(
-                        //           child: CircularProgressIndicator(),
-                        //         );
-                        //       }
-                        //     }
-                        // )
-
                         child: ListView.builder(
                             itemCount: userData!.length,
                             itemBuilder: (context, i) {
                               print("object");
                               //return Connect(userdata["fullname"], userdata["designation"]);
+
                               return Connect(userData[i], userData[i].name,
                                   userData[i].designation, context);
-                            })
-                      ),
+                            })),
                   ),
                 ],
               ),
-            )
-        );
+            ));
       },
     );
   }
