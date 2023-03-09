@@ -50,6 +50,7 @@ class ContinueButtonWidget extends ConsumerWidget {
               twitter: "",
               portfolio: "",
               isPrivate: false,
+              coins: 0,
             );
             bool state = await _databaseService.addUserData(userDetails);
             print(state);

@@ -11,6 +11,7 @@ class UserModel {
   String? twitter;
   String? portfolio;
   bool isPrivate;
+  int coins = 0;
 
   UserModel({
     required this.uid,
@@ -25,6 +26,7 @@ class UserModel {
     this.twitter,
     this.portfolio,
     required this.isPrivate,
+    required this.coins,
   });
 
   // Convert a EventDetailsModel object into a Map object
@@ -43,6 +45,7 @@ class UserModel {
       twitter: map['twitter'],
       portfolio: map['portfolio'],
       isPrivate: map['isPrivate'],
+      coins: map['coins'],
     );
   }
 
@@ -60,6 +63,7 @@ class UserModel {
       "twitter": user.twitter,
       "portfolio": user.portfolio,
       "isPrivate": user.isPrivate,
+      "coins": user.coins,
     };
 
     return map;
