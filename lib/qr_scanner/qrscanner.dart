@@ -22,6 +22,8 @@ class _QRScanState extends ConsumerState<QRScan> {
   @override
   void dispose() {
     controller?.dispose();
+
+    controller.dispose();
     super.dispose();
   }
 
@@ -64,7 +66,6 @@ class _QRScanState extends ConsumerState<QRScan> {
       DatabaseService().userDetailsWithID(scanData.code!).listen((userData) {
         if (userData != null) {
           ProfileDialog(userData, context);
-
         }
       });
       // final databaseUser = ref.watch(userDetailsWithIdProvider(scanData.code!));
@@ -89,6 +90,4 @@ class _QRScanState extends ConsumerState<QRScan> {
       // );
     });
   }
-
-
 }

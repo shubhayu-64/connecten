@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ConnecTen/ProfileScreen/widgets/profile_header.dart';
 import 'package:ConnecTen/ProfileScreen/widgets/social_cards.dart';
+import 'package:ConnecTen/ProfileScreen/widgets/toggle_button.dart';
 import 'package:ConnecTen/Providers/database_provider.dart';
 import 'package:ConnecTen/utils/colors.dart';
 import 'package:ConnecTen/utils/fluttertoast.dart';
@@ -39,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    // ToggleButton(),
+                    ToggleButton(),
                     //Stack 2
                     const ProfileHeaderWidget(),
                   ],
