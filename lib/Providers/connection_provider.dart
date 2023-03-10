@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ConnecTen/utils/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +27,15 @@ import 'package:nearby_connections/nearby_connections.dart';
 // final bluetoothPermissionProvider = FutureProvider<bool>(((ref) {
 //   return getBluetoothPermission();
 // }));
+
+List<dynamic> parseString(String str) {
+  List<String> parts = str.split(',');
+  String name = parts[0];
+  bool flag = parts[1].toLowerCase() == 'true';
+  int? value = parts[2] != 'null' ? int.parse(parts[2]) : null;
+
+  return [name, flag, value];
+}
 
 class ConnectionNotifier extends ChangeNotifier {
   final Strategy strategy = Strategy.P2P_STAR;
@@ -77,11 +87,19 @@ class ConnectionNotifier extends ChangeNotifier {
   }
 
   Future disableDiscovery() async {
-    await Nearby().stopDiscovery();
+    try {
+      await Nearby().stopDiscovery();
+      print("Discovery Stopped");
+      notifyListeners();
+    } on PlatformException catch (e) {
+      print(e);
+    }
     notifyListeners();
   }
 
   Future enableAdvertising(String? uid) async {
+    print("Data aa gya: $uid");
+
     try {
       bool a = await Nearby().startAdvertising(
         uid!,
@@ -94,7 +112,10 @@ class ConnectionNotifier extends ChangeNotifier {
           print("Disconnected: id $id");
         },
       );
-    } catch (exception) {
+      if (a == true) {
+        print("Advertising Started");
+      }
+    } on PlatformException catch (exception) {
       print(exception);
     }
     notifyListeners();
@@ -105,8 +126,14 @@ class ConnectionNotifier extends ChangeNotifier {
   }
 
   Future disableAdvertising() async {
-    await Nearby().stopAdvertising();
-    notifyListeners();
+    try {
+      await Nearby().stopAdvertising();
+      print("Advertising Stopped");
+      notifyListeners();
+    } on PlatformException catch (e) {
+      print(e);
+    }
+    // await Nearby().stopAdvertising();
   }
 
   Future getLocationPermission() async {
