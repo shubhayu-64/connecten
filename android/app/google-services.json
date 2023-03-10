@@ -1,0 +1,150 @@
+{
+  "project_info": {
+    "project_number": "624730258014",
+    "project_id": "connecten-ee236",
+    "storage_bucket": "connecten-ee236.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624730258014:android:205c0e38f9b6283f45d2cf",
+        "android_client_info": {
+          "package_name": "com.codingreboot.connecten"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624730258014-u0hb1ibrk1fk2mnneh93an8pnqktmrrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7h-Jqh0-_Nkk3ujLWv915Kvifm9utXJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624730258014-u0hb1ibrk1fk2mnneh93an8pnqktmrrl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624730258014-q79gkieq2o95g0b0oetaaeai3mbdc4bd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.connecten.connecten"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624730258014:android:3364b763d2534b6145d2cf",
+        "android_client_info": {
+          "package_name": "com.codingreboot.connecten"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624730258014-1a9elj29a4eqb372bkb9citk50js95oq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codingreboot.connecten",
+            "certificate_hash": "999ede4705a5935fb1b984c29269813fdc193b1b"
+          }
+        },
+        {
+          "client_id": "624730258014-jqbs09tldgguf8j6i0seuckpl73gspj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codingreboot.connecten",
+            "certificate_hash": "d7e29c998c72949cce4e22cbf4eaffdb64231e3e"
+          }
+        },
+        {
+          "client_id": "624730258014-u0hb1ibrk1fk2mnneh93an8pnqktmrrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7h-Jqh0-_Nkk3ujLWv915Kvifm9utXJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624730258014-u0hb1ibrk1fk2mnneh93an8pnqktmrrl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624730258014-q79gkieq2o95g0b0oetaaeai3mbdc4bd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.connecten.connecten"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624730258014:android:38ff9e752e890a4d45d2cf",
+        "android_client_info": {
+          "package_name": "com.connecten.connecten"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624730258014-29mpsr3d368m7m6i1ljldl6di99988vj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.connecten.connecten",
+            "certificate_hash": "d1bd964df530bcb85b26faa1d0261669b4a389c1"
+          }
+        },
+        {
+          "client_id": "624730258014-3i02r14a6rnlhln1rdmqpeg5qsjlab1n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.connecten.connecten",
+            "certificate_hash": "91745b16d0936fafd590cba16ca54b38c21d2974"
+          }
+        },
+        {
+          "client_id": "624730258014-u0hb1ibrk1fk2mnneh93an8pnqktmrrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7h-Jqh0-_Nkk3ujLWv915Kvifm9utXJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624730258014-u0hb1ibrk1fk2mnneh93an8pnqktmrrl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624730258014-q79gkieq2o95g0b0oetaaeai3mbdc4bd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.connecten.connecten"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
