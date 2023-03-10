@@ -18,7 +18,7 @@ final userDetailsWithIdProvider =
   return ref.watch(databaseProvider).userDetailsWithID(id);
 }));
 
-final nearbyConnectionsProvider =
-    FutureProvider.family<List<UserModel>?, List<String>>(((ref, nearbyUsers) {
+final nearbyConnectionsProvider = FutureProvider.autoDispose
+    .family<List<UserModel>?, List<String>>(((ref, nearbyUsers) {
   return ref.watch(databaseProvider).getNearbyData(nearbyUsers);
 }));
