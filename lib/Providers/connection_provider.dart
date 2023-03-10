@@ -44,13 +44,16 @@ class ConnectionNotifier extends ChangeNotifier {
   }
 
   Future enableDiscovery(String? uid, context) async {
+    print("----------------------------> $uid");
     try {
       bool a = await Nearby().startDiscovery(
         uid!,
         strategy,
         onEndpointFound: (id, name, serviceId) {
-          if (_connections.contains(name) == false) {
-            _connections.add(name);
+          print("ID: $id, Name: $name, ServiceID: $serviceId");
+          final decodeBody = parseString(name);
+          if (_connections.contains(decodeBody[1]) == false) {
+            _connections.add(decodeBody[1]);
           }
           // TODO: Add New Connection Snackbar
           toastWidget("New Connection Found");
@@ -74,27 +77,50 @@ class ConnectionNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future enableAdvertising(String? uid) async {
+  Future enableAdvertising(String? uid, bool? burst, int? level) async {
     print("Data aa gya: $uid");
-
-    try {
-      bool a = await Nearby().startAdvertising(
-        uid!,
-        strategy,
-        onConnectionInitiated: onConnectionInit,
-        onConnectionResult: (id, status) {
-          print(status);
-        },
-        onDisconnected: (id) {
-          print("Disconnected: id $id");
-        },
-      );
-      if (a == true) {
-        print("Advertising Started");
+    if (burst == true) {
+      final encodeData = "$uid,true,$level";
+      print(encodeData);
+      try {
+        bool a = await Nearby().startAdvertising(
+          encodeData,
+          strategy,
+          onConnectionInitiated: onConnectionInit,
+          onConnectionResult: (id, status) {
+            print(status);
+          },
+          onDisconnected: (id) {
+            print("Disconnected: id $id");
+          },
+        );
+        if (a == true) {
+          print("Advertising Started");
+        }
+      } on PlatformException catch (exception) {
+        print(exception);
       }
-    } on PlatformException catch (exception) {
-      print(exception);
+    } else {
+      try {
+        bool a = await Nearby().startAdvertising(
+          uid!,
+          strategy,
+          onConnectionInitiated: onConnectionInit,
+          onConnectionResult: (id, status) {
+            print(status);
+          },
+          onDisconnected: (id) {
+            print("Disconnected: id $id");
+          },
+        );
+        if (a == true) {
+          print("Advertising Started");
+        }
+      } on PlatformException catch (exception) {
+        print(exception);
+      }
     }
+
     notifyListeners();
   }
 
