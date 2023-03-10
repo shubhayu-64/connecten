@@ -386,7 +386,7 @@ class AddConnectionWidget extends ConsumerWidget {
         }
         toastWidget("Already in Connections");
       },
-      icon: Icon(Icons.person_add_alt_1_rounded),
+      icon:Icon(Icons.person_add_alt_1_rounded),
     );
   }
 }
