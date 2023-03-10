@@ -370,7 +370,7 @@ class AddConnectionWidget extends ConsumerWidget {
   AddConnectionWidget({Key? key, required this.uid}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref){
     final _userDetails = ref.watch(userDetailsProvider);
     final _databaseProvider = ref.watch(databaseProvider);
     return IconButton(
