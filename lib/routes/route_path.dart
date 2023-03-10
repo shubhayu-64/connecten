@@ -7,4 +7,5 @@ abstract class RoutePath {
   static const routeToNearbyScreen = 'nearby-screen';
   static const routeToConnectionScreen = 'connection-screen';
   static const routeToQRScreen = 'qr-screen';
+  static const routeToCoinScreen = 'coin-screen';
 }
