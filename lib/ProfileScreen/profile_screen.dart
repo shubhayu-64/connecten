@@ -1,4 +1,5 @@
 import 'package:ConnecTen/ProfileScreen/widgets/toggle_button.dart';
+import 'package:ConnecTen/Providers/auth_providers.dart';
 import 'package:ConnecTen/Providers/connection_provider.dart';
 import 'package:ConnecTen/utils/fluttertoast.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +65,8 @@ class LockButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final _userDetails = ref.watch(userDetailsProvider);
     final _databaseUser = ref.watch(databaseProvider);
+    final cp = ref.watch(connectionProvider);
+    final _authUser = ref.watch(authUserProvider);
 
     return _userDetails.when(
       data: (userData) {
@@ -94,6 +97,31 @@ class LockButton extends ConsumerWidget {
                     ? {toastWidget("Profile Locked")}
                     : toastWidget("Profile Unlocked");
               },
+            ),
+            _userDetails.when(
+              loading: () {
+                return const Scaffold(
+                  body: Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.blue,
+                    ),
+                  ),
+                );
+              },
+              error: (err, stack) => Text('Error: $err'),
+              data: (currentUser) => ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        currentUser.coins >= 500 ? Colors.blue : Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  onPressed: () {
+                    cp.disableDiscovery();
+                    cp.enableAdvertising(_authUser.uid, false, null);
+                  },
+                  child: Text("BURST")),
             ),
             // Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
             //   color: userData.isPrivate ? Colors.black : AppColor.secbgcolor,

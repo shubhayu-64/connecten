@@ -38,7 +38,7 @@ class _ToggleButtonState extends ConsumerState<ToggleButton> {
 
           if (value == true) {
             cp.disableDiscovery();
-            cp.enableAdvertising(_authUser.uid, false, null);
+            cp.enableAdvertising(_authUser.uid, false, 0);
           } else {
             cp.disableAdvertising();
             cp.enableDiscovery(_authUser.uid, context);

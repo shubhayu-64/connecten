@@ -51,16 +51,24 @@ class ConnectionNotifier extends ChangeNotifier {
         strategy,
         onEndpointFound: (id, name, serviceId) {
           print("ID: $id, Name: $name, ServiceID: $serviceId");
-          final decodeBody = parseString(name);
-          if (_connections.contains(decodeBody[1]) == false) {
-            _connections.add(decodeBody[1]);
+          if (name.split(',').length == 3) {
+            final decodeBody = parseString(name);
+            print(decodeBody);
+            if (_connections.contains(decodeBody[0]) == false) {
+              _connections.add(decodeBody[0]);
+            }
+          } else {
+            if (_connections.contains(name) == false) {
+              _connections.add(name);
+            }
           }
+
           // TODO: Add New Connection Snackbar
           toastWidget("New Connection Found");
         },
         onEndpointLost: (id) {},
       );
-    } catch (e) {
+    } on PlatformException catch (e) {
       print(e);
     }
     notifyListeners();
@@ -78,9 +86,9 @@ class ConnectionNotifier extends ChangeNotifier {
   }
 
   Future enableAdvertising(String? uid, bool? burst, int? level) async {
-    print("Data aa gya: $uid");
+    // print("Data aa gya: $uid");
     if (burst == true) {
-      final encodeData = "$uid,true,$level";
+      final encodeData = "$uid,$burst,$level";
       print(encodeData);
       try {
         bool a = await Nearby().startAdvertising(
@@ -101,9 +109,11 @@ class ConnectionNotifier extends ChangeNotifier {
         print(exception);
       }
     } else {
+      final encodeData = "$uid,$burst,$level";
+      print(encodeData);
       try {
         bool a = await Nearby().startAdvertising(
-          uid!,
+          encodeData,
           strategy,
           onConnectionInitiated: onConnectionInit,
           onConnectionResult: (id, status) {
