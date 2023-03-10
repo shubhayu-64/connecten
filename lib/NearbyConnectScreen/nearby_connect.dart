@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:ConnecTen/ProfileScreen/widgets/toggle_button.dart';
@@ -19,10 +18,11 @@ class NearbyConnect extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cp = ref.watch(connectionProvider);
-    final _databaseProvider = ref.watch(nearbyConnectionsProvider(cp.connections));
     final _userData = ref.watch(userDetailsProvider);
     print("-------Connection IDs-------");
     print(cp.connections);
+    final _databaseProvider =
+        ref.watch(nearbyConnectionsProvider(cp.connections));
 
     return _databaseProvider.when(
       loading: () {
@@ -66,20 +66,20 @@ class NearbyConnect extends ConsumerWidget {
                       );
                     },
                     error: (err, stack) => Text('Error: $err'),
-                    data: (currentUser)=>
-                      ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                  backgroundColor: currentUser.coins > 500 ? Colors.blue: Colors.grey,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
+                    data: (currentUser) => ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: currentUser.coins > 500
+                              ? Colors.blue
+                              : Colors.grey,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        onPressed: () {
+                          _showMyDialog(context);
+                        },
+                        child: Text("BURST")),
                   ),
-                onPressed: (){
-                    _showMyDialog(context);
-                }, child: Text("BURST")),
-
-                  ),
-
                   SizedBox(height: screenHeight! * .02),
                   SingleChildScrollView(
                     child: Container(
