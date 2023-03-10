@@ -48,7 +48,7 @@ class DisplayCoin extends ConsumerWidget {
               child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(9),
-                    color: AppColor.cardcolor.withOpacity(0.5),
+                    color: AppColor.cardcolor,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

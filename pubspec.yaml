@@ -32,6 +32,7 @@ dependencies:
   nearby_connections:
   shared_preferences: ^2.0.15
   qr_code_scanner: ^1.0.1
+  toggle_switch: ^2.0.1
 
 
 dev_dependencies:
