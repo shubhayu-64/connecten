@@ -45,12 +45,13 @@ class ContinueButtonWidget extends ConsumerWidget {
               email: _authState.email!,
               imageURL: _authState.photoURL!,
               connectedList: [],
+              requestList: [],
               github: "",
               linkedin: "",
               twitter: "",
               portfolio: "",
               isPrivate: false,
-              coins: 0,
+              coins: 500,
             );
             bool state = await _databaseService.addUserData(userDetails);
             print(state);

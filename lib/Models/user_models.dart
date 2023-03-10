@@ -6,6 +6,7 @@ class UserModel {
   String email;
   String imageURL;
   List<String>? connectedList;
+  List<String>? requestList;
   String? github;
   String? linkedin;
   String? twitter;
@@ -21,6 +22,7 @@ class UserModel {
     required this.email,
     required this.imageURL,
     this.connectedList,
+    this.requestList,
     this.github,
     this.linkedin,
     this.twitter,
@@ -40,6 +42,7 @@ class UserModel {
       email: map['email'],
       imageURL: map['imageURL'],
       connectedList: map['connectedList'].cast<String>(),
+      requestList: map['requestList'].cast<String>(),
       github: map['github'],
       linkedin: map['linkedin'],
       twitter: map['twitter'],
@@ -58,6 +61,7 @@ class UserModel {
       "email": user.email,
       "imageURL": user.imageURL,
       "connectedList": user.connectedList,
+      "requestList": user.requestList,
       "github": user.github,
       "linkedin": user.linkedin,
       "twitter": user.twitter,
