@@ -63,7 +63,7 @@ class DisplayCoin extends ConsumerWidget {
                           padding: EdgeInsets.only(left:5.0),
                           child: CircleAvatar(
                             radius: 11,
-                            backgroundColor: Colors.black,
+                            backgroundColor: AppColor.buttoncolor,
                             foregroundImage: AssetImage(ImageAsset.coinlogo, ),
                           ),
                         ),

@@ -143,12 +143,3 @@ Widget social_link(context, index, image, text, link) {
     ),
   );
 }
-
-class DialogSocials extends ConsumerWidget {
-  const DialogSocials({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return const Placeholder();
-  }
-}
