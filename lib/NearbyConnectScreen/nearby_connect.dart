@@ -19,8 +19,8 @@ class NearbyConnect extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cp = ref.watch(connectionProvider);
-    final _databaseProvider =
-    ref.watch(nearbyConnectionsProvider(cp.connections));
+    final _databaseProvider = ref.watch(nearbyConnectionsProvider(cp.connections));
+    final _userData = ref.watch(userDetailsProvider);
     print("-------Connection IDs-------");
     print(cp.connections);
 
@@ -54,6 +54,32 @@ class NearbyConnect extends ConsumerWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                  Center(child: ToggleButton()),
+                  _userData.when(
+                    loading: () {
+                      return const Scaffold(
+                        body: Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.blue,
+                          ),
+                        ),
+                      );
+                    },
+                    error: (err, stack) => Text('Error: $err'),
+                    data: (currentUser)=>
+                      ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                  backgroundColor: currentUser.coins > 500 ? Colors.blue: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                onPressed: (){
+                    _showMyDialog(context);
+                }, child: Text("BURST")),
+
+                  ),
+
                   SizedBox(height: screenHeight! * .02),
                   SingleChildScrollView(
                     child: Container(
@@ -72,6 +98,46 @@ class NearbyConnect extends ConsumerWidget {
                 ],
               ),
             ));
+      },
+    );
+  }
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: AlertDialog(
+            title: const Text('Burster Alert'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('This is a demo alert dialog.'),
+                  Text('Would you like to approve of this message?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Approve'),
+                onPressed: () {
+                  /// TODO: Add logic to approve the message
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: const Text('Deny'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
       },
     );
   }
