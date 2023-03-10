@@ -1,4 +1,5 @@
 import 'package:ConnecTen/ProfileScreen/widgets/toggle_button.dart';
+import 'package:ConnecTen/Providers/connection_provider.dart';
 import 'package:ConnecTen/utils/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,7 +55,6 @@ class ProfileScreen extends StatelessWidget {
           ),
         ));
   }
-
 }
 
 class LockButton extends ConsumerWidget {
@@ -66,56 +66,58 @@ class LockButton extends ConsumerWidget {
     final _databaseUser = ref.watch(databaseProvider);
 
     return _userDetails.when(
-      data: (userData) => Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
-          //   color: userData.isPrivate ? AppColor.secbgcolor : Colors.black,
-          // ),
-          ToggleSwitch(
-            minWidth: screenWidth! * 0.16,
-            minHeight: screenHeight! * 0.04,
-            activeBgColors: [
-              [AppColor.buttoncolor],
-              [AppColor.buttoncolor]
-            ],
-            activeFgColor: Colors.white,
-            inactiveBgColor: AppColor.cardcolor,
-            inactiveFgColor: Colors.black,
-            initialLabelIndex: userData.isPrivate ? 1 : 0,
-            totalSwitches: 2,
-            fontSize: 9,
-            labels: ['PUBLIC', 'PRIVATE'],
-            onToggle: (index) {
-              _userDetails.value!.isPrivate = !_userDetails.value!.isPrivate;
-              _databaseUser.updateUserData(_userDetails.value!);
-              _userDetails.value!.isPrivate
-                  ? {toastWidget("Profile Locked")}
-                  : toastWidget("Profile Unlocked");
-            },
-          ),
-          // Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
-          //   color: userData.isPrivate ? Colors.black : AppColor.secbgcolor,
-          // ),
-          // Container(
-          //   decoration: BoxDecoration(
-          //     shape: BoxShape.circle,
-          //     color: AppColor.buttoncolor,
-          //   ),
-          //   child: IconButton(
-          //     icon: Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
-          //     ),
-          //     onPressed: (){
-          //       _userDetails.value!.isPrivate = !_userDetails.value!.isPrivate;
-          //       _databaseUser.updateUserData(_userDetails.value!);
-          //       _userDetails.value!.isPrivate ? {toastWidget("Profile Locked")
-          //       } : toastWidget("Profile Unlocked");
-          //     },
-          //   ),
-          // )
-          // icon: Icon(profileState ? Icons.lock_rounded : Icons.lock_open_rounded,)),
-        ],
-      ),
+      data: (userData) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
+            //   color: userData.isPrivate ? AppColor.secbgcolor : Colors.black,
+            // ),
+            ToggleSwitch(
+              minWidth: screenWidth! * 0.16,
+              minHeight: screenHeight! * 0.04,
+              activeBgColors: [
+                [AppColor.buttoncolor],
+                [AppColor.buttoncolor]
+              ],
+              activeFgColor: Colors.white,
+              inactiveBgColor: AppColor.cardcolor,
+              inactiveFgColor: Colors.black,
+              initialLabelIndex: userData.isPrivate ? 1 : 0,
+              totalSwitches: 2,
+              fontSize: 9,
+              labels: ['PUBLIC', 'PRIVATE'],
+              onToggle: (index) {
+                _userDetails.value!.isPrivate = !_userDetails.value!.isPrivate;
+                _databaseUser.updateUserData(_userDetails.value!);
+                _userDetails.value!.isPrivate
+                    ? {toastWidget("Profile Locked")}
+                    : toastWidget("Profile Unlocked");
+              },
+            ),
+            // Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
+            //   color: userData.isPrivate ? Colors.black : AppColor.secbgcolor,
+            // ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     color: AppColor.buttoncolor,
+            //   ),
+            //   child: IconButton(
+            //     icon: Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
+            //     ),
+            //     onPressed: (){
+            //       _userDetails.value!.isPrivate = !_userDetails.value!.isPrivate;
+            //       _databaseUser.updateUserData(_userDetails.value!);
+            //       _userDetails.value!.isPrivate ? {toastWidget("Profile Locked")
+            //       } : toastWidget("Profile Unlocked");
+            //     },
+            //   ),
+            // )
+            // icon: Icon(profileState ? Icons.lock_rounded : Icons.lock_open_rounded,)),
+          ],
+        );
+      },
       error: (err, stack) => Text('Error: $err'),
       loading: () {
         return Center(

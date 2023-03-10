@@ -116,14 +116,14 @@ class _NearbyConnectState extends ConsumerState<NearbyConnect> {
       },
       error: (err, stack) => Text('Error: $err'),
       data: (userData) {
-        if (userData!.length != cp.connections.length) {
-          setState(() {
-            print("-------Connection IDs-------");
-            print("Error: Data not fetched");
-            // final _databaseProvider =
-            //     ref.watch(nearbyConnectionsProvider(cp.connections));
-          });
-        }
+        // if (userData!.length != cp.connections.length) {
+        //   setState(() {
+        //     print("-------Connection IDs-------");
+        //     print("Error: Data not fetched");
+        //     // final _databaseProvider =
+        //     //     ref.watch(nearbyConnectionsProvider(cp.connections));
+        //   });
+        // }
 
         return Scaffold(
             drawer: const Menu(),
@@ -144,32 +144,32 @@ class _NearbyConnectState extends ConsumerState<NearbyConnect> {
                     ),
                   ),
                   // Center(child: ToggleButton()),
-                  _userData.when(
-                    loading: () {
-                      return const Scaffold(
-                        body: Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.blue,
-                          ),
-                        ),
-                      );
-                    },
-                    error: (err, stack) => Text('Error: $err'),
-                    data: (currentUser) => ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: currentUser.coins >= 500
-                              ? Colors.blue
-                              : Colors.grey,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        onPressed: () {
-                          _showMyDialog(context);
-                        },
-                        child: Text("BURST")),
-                  ),
-                  SizedBox(height: screenHeight! * .02),
+                  // _userData.when(
+                  //   loading: () {
+                  //     return const Scaffold(
+                  //       body: Center(
+                  //         child: CircularProgressIndicator(
+                  //           color: Colors.blue,
+                  //         ),
+                  //       ),
+                  //     );
+                  //   },
+                  //   error: (err, stack) => Text('Error: $err'),
+                  //   data: (currentUser) => ElevatedButton(
+                  //       style: ElevatedButton.styleFrom(
+                  //         backgroundColor: currentUser.coins >= 500
+                  //             ? Colors.blue
+                  //             : Colors.grey,
+                  //         shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(10.0),
+                  //         ),
+                  //       ),
+                  //       onPressed: () {
+                  //         _showMyDialog(context);
+                  //       },
+                  //       child: Text("BURST")),
+                  // ),
+                  // SizedBox(height: screenHeight! * .02),
                   SingleChildScrollView(
                     child: Container(
                         height: screenHeight! * 0.6,
@@ -436,7 +436,7 @@ class AddConnectionWidget extends ConsumerWidget {
   AddConnectionWidget({Key? key, required this.uid}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref){
+  Widget build(BuildContext context, WidgetRef ref) {
     final _userDetails = ref.watch(userDetailsProvider);
     final _databaseProvider = ref.watch(databaseProvider);
     return IconButton(
@@ -452,7 +452,7 @@ class AddConnectionWidget extends ConsumerWidget {
         }
         toastWidget("Already in Connections");
       },
-      icon:Icon(Icons.person_add_alt_1_rounded),
+      icon: Icon(Icons.person_add_alt_1_rounded),
     );
   }
 }
