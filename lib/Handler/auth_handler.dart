@@ -18,15 +18,12 @@ class AuthHandler extends ConsumerWidget {
       }
       AsyncValue<bool> userExistsState =
           ref.watch(checkUserExistsProvider(value.uid));
-      //  userState = userExistsState;
       if (userExistsState.value == false) {
         return FormScreen();
       } else if (userExistsState.value == true) {
-        return ProfileScreen();
+        return const ProfileScreen();
       }
       return const LoadingPage();
-      // print(userState.value);
-      // return LoginScreen();
     }, error: ((error, stackTrace) {
       print(error);
       return const Center(child: Text('Something went wrong'));
