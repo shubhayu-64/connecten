@@ -121,7 +121,7 @@ class ProfileHeaderWidget extends ConsumerWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.all(0),
-                    child: Image.network("https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${userData.uid}",
+                    child: Image.network("https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${userData.uid}",
                     height: screenHeight!*0.25,
                     fit: BoxFit.fitHeight,
                     ),
