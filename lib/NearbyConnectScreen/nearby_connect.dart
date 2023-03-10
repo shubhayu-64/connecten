@@ -1,6 +1,4 @@
-
 import 'dart:async';
-import 'package:ConnecTen/ProfileScreen/widgets/toggle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ConnecTen/Models/user_models.dart';
@@ -12,23 +10,91 @@ import 'package:ConnecTen/widgets/appbar.dart';
 import 'package:ConnecTen/widgets/drawer.dart';
 import 'package:ConnecTen/widgets/profile_dialog.dart';
 
-class NearbyConnect extends StatelessWidget {
+// class NearbyConnect extends StatefulWidget {
+//   const NearbyConnect({super.key});
+
+//   @override
+//   State<NearbyConnect> createState() => _NearbyConnectState();
+// }
+
+// class _NearbyConnectState extends State<NearbyConnect> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       drawer: const Menu(),
+//       appBar: PreferredSize(
+//         preferredSize: Size.fromHeight(screenHeight! * 0.12),
+//         child: CustomAppbar(context),
+//       ),
+//       body: Container(
+//         margin: EdgeInsets.fromLTRB(30, 0, 30, 25),
+//               child: Column(
+//                 children: [
+//                   const Text(
+//                     "Nearby Connections",
+//                     style: TextStyle(
+//                       letterSpacing: 1,
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.w600,
+//                     ),
+//                   ),
+//                   // Center(child: ToggleButton()),
+//                   _userData.when(
+//                     loading: () {
+//                       return const Scaffold(
+//                         body: Center(
+//                           child: CircularProgressIndicator(
+//                             color: Colors.blue,
+//                           ),
+//                         ),
+//                       );
+//                     },
+//                     error: (err, stack) => Text('Error: $err'),
+//                     data: (currentUser) => ElevatedButton(
+//                         style: ElevatedButton.styleFrom(
+//                           backgroundColor: currentUser.coins >= 500
+//                               ? Colors.blue
+//                               : Colors.grey,
+//                           shape: RoundedRectangleBorder(
+//                             borderRadius: BorderRadius.circular(10.0),
+//                           ),
+//                         ),
+//                         onPressed: () {
+//                           _showMyDialog(context);
+//                         },
+//                         child: Text("BURST")),
+//                   ),
+//                   SizedBox(height: screenHeight! * .02),
+//                   SingleChildScrollView(
+//                     child: Container(
+//                         height: screenHeight! * 0.6,
+//                         //height: Get.height*0.5,
+//                         child: ListView.builder(
+//                             itemCount: userData!.length,
+//                             itemBuilder: (context, i) {
+//                               print("object");
+//                               //return Connect(userdata["fullname"], userdata["designation"]);
+
+//                               return Connect(userData[i], userData[i].name,
+//                                   userData[i].designation, context);
+//                             })),
+//                   ),
+//                 ],
+//               ),
+//             )
+//       ),
+//     );
+//   }
+// }
+
+class NearbyConnect extends ConsumerStatefulWidget {
   const NearbyConnect({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  ConsumerState<ConsumerStatefulWidget> createState() => _NearbyConnectState();
 }
 
-class NearbyConnects extends ConsumerStatefulWidget {
-  const NearbyConnects({super.key});
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _NearbyConnectsState();
-}
-
-class _NearbyConnectsState extends ConsumerState<NearbyConnects> {
+class _NearbyConnectState extends ConsumerState<NearbyConnect> {
   @override
   Widget build(BuildContext context) {
     final cp = ref.watch(connectionProvider);
