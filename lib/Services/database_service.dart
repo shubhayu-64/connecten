@@ -28,6 +28,7 @@ class DatabaseService {
   Future<List<UserModel>?> getNearbyData(List<String> nearbyUsers) async {
     List<UserModel> nearbyData = [];
     for (var id in nearbyUsers) {
+      print("Fetching: $id");
       await _userCollection.doc(id).get().then((value) {
         nearbyData
             .add(UserModel.fromMap(value.data() as Map<String, dynamic>?));
