@@ -18,12 +18,6 @@ class _ToggleButtonState extends ConsumerState<ToggleButton> {
     final cp = ref.watch(connectionProvider);
     final _authUser = ref.watch(authUserProvider);
 
-    initState() {
-      super.initState();
-      cp.disableAdvertising();
-      cp.enableDiscovery(_authUser.uid, context);
-    }
-
     // if (state) {
     //   setState(() {
     //     print("-------------------------");

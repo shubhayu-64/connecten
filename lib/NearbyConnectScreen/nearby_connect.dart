@@ -10,7 +10,6 @@ import 'package:ConnecTen/widgets/appbar.dart';
 import 'package:ConnecTen/widgets/drawer.dart';
 import 'package:ConnecTen/widgets/profile_dialog.dart';
 
-
 class NearbyConnect extends ConsumerStatefulWidget {
   const NearbyConnect({super.key});
 
@@ -22,7 +21,8 @@ class _NearbyConnectState extends ConsumerState<NearbyConnect> {
   @override
   Widget build(BuildContext context) {
     final cp = ref.watch(connectionProvider);
-    final _databaseProvider = ref.watch(nearbyConnectionsProvider(cp.connections));
+    final _databaseProvider =
+        ref.watch(nearbyConnectionsProvider(cp.connections));
     // final _userData = ref.watch(userDetailsProvider);
     print("-------Connection IDs-------");
     print(cp.connections);
@@ -84,7 +84,7 @@ class _NearbyConnectState extends ConsumerState<NearbyConnect> {
                   //       },
                   //       child: Text("BURST")),
                   // ),
-                  // SizedBox(height: screenHeight! * .02),
+                  SizedBox(height: screenHeight! * .02),
                   SingleChildScrollView(
                     child: Container(
                         height: screenHeight! * 0.6,
@@ -96,7 +96,8 @@ class _NearbyConnectState extends ConsumerState<NearbyConnect> {
                               print(i);
                               //return Connect(userdata["fullname"], userdata["designation"]);
 
-                              return Connect(userData[i], context);
+                              return connect(userData[i], userData[i].name,
+                                  userData[i].designation, context);
                             })),
                   ),
                 ],
@@ -147,8 +148,7 @@ class _NearbyConnectState extends ConsumerState<NearbyConnect> {
   }
 }
 
-Widget Connect(UserModel userData, context) {
-  print(userData.name);
+Widget connect(UserModel userData, name, designation, context) {
   return InkWell(
       onTap: () {
         ProfileDialog(userData, context);
