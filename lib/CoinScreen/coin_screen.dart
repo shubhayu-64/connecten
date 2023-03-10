@@ -33,12 +33,12 @@ class CoinScreen extends ConsumerWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: const Icon(Icons.arrow_back_ios_new, color: AppColor.arrowcolor),
+              icon: const Icon(Icons.arrow_back_ios_new, color: AppColor.buttoncolor),
               alignment: Alignment.centerLeft,
             ),
           ),
           centerTitle: true,
-          title: Text('Coins', style: TextStyle(color: AppColor.arrowcolor, fontSize: 20, fontWeight: FontWeight.w600),),
+          title: Text('Coins', style: TextStyle(color: AppColor.buttoncolor, fontSize: 20, fontWeight: FontWeight.w600),),
         ),
       ),
       body: Center(
@@ -63,10 +63,10 @@ class CoinScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 30),
+                    padding: const EdgeInsets.only(bottom: 20),
                     child: ColorFiltered(
                       colorFilter: ColorFilter.mode(AppColor.arrowcolor, BlendMode.srcIn),
-                        child: Image.asset(ImageAsset.coinlogo,height: 40,)
+                        child: Image.asset(ImageAsset.coinlogo,height: 30,)
                     ),
                   ),
                   Column(
@@ -80,7 +80,7 @@ class CoinScreen extends ConsumerWidget {
                       ),
                       Text('Coin Balance',
                         style: TextStyle(color: Colors.grey,
-                          fontSize: 15,
+                          fontSize: 10,
                         ),
                       ),
                     ],
@@ -88,6 +88,15 @@ class CoinScreen extends ConsumerWidget {
                 ],
               ),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth!*0.1, vertical: screenHeight!*0.02),
+              child: Text("You can earn coins in the following ways: ",
+                style: TextStyle(color: AppColor.arrowcolor,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+
 
           ],
         )

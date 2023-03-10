@@ -125,9 +125,10 @@ class ConnectReqItem extends ConsumerWidget{
                   if(currentuserdata.connectedList!.contains(userData.uid)== true) {
                     toastWidget("Already Connected");
                   } else {
-                    currentuserdata.connectedList!.add(userData.uid);
+                    userData.connectedList!.add(currentuserdata.uid);
                     currentuserdata.requestList!.remove(userData.uid);
                     toastWidget("Added to Connections");
+                    await _databaseProvider.updateUserData(userData);
                     await _databaseProvider.updateUserData(currentuserdata);
                   }
                 }, icon: Icon(Icons.check_circle_rounded)),

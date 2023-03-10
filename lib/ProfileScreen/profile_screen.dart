@@ -12,6 +12,7 @@ import 'package:ConnecTen/utils/size_config.dart';
 import 'package:ConnecTen/widgets/appbar.dart';
 import 'package:ConnecTen/widgets/drawer.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:lottie/lottie.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -29,8 +30,8 @@ class ProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.fromLTRB(30, 0, 30, 25),
-                height: screenHeight! * 0.38,
+                margin: EdgeInsets.fromLTRB(30, 20, 30, 25),
+                height: screenHeight! * 0.43,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: AppColor.primarybgcolor,
@@ -43,18 +44,28 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
+
                     ToggleButton(),
                     // LockButton(),
                     //Stack 2
                     const ProfileHeaderWidget(),
+
                   ],
                 ),
               ),
               LockButton(),
+
               socialCard(context),
             ],
           ),
-        ));
+        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     // context.read(connectionProvider).disconnect();
+        //   },
+        //   child: Lottie.network("https://lottiefiles.com/137084-networking-marketing-agency"),
+        // )
+    );
   }
 }
 

@@ -107,9 +107,17 @@ class ConnectButton extends ConsumerWidget {
     return ElevatedButton(
       onPressed: () async {
         UserModel currentUser = _currentUserDetails.value!;
-        toastWidget("Connection Request Sent");
-        SenderUserData.requestList!.add(currentUser.uid);
-        await _databaseProvider.updateUserData(SenderUserData);
+
+        if(SenderUserData.requestList!.contains(currentUser.uid) == true) {
+           toastWidget("Already Sent");
+           Navigator.of(context).pop();
+        }else{
+          toastWidget("Connection Request Sent");
+          SenderUserData.requestList!.add(currentUser.uid);
+          await _databaseProvider.updateUserData(SenderUserData);
+          Navigator.of(context).pop();
+        }
+
       },
       child: Text("Connect"),
       style: ElevatedButton.styleFrom(

@@ -13,7 +13,7 @@ Widget CustomAppbar(BuildContext context){
     toolbarHeight: screenHeight! * 0.12,
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
-    shadowColor: AppColor.primarybgcolor,
+    // shadowColor: AppColor.primarybgcolor,
     elevation: 0.0,
     leading: Builder(
       builder: (context) => IconButton(
@@ -41,17 +41,17 @@ class DisplayCoin extends ConsumerWidget {
 
     return _databaseUser.when(
       data: (data) {
-        return InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, RoutePath.routeToCoinScreen);
-          },
-          child: Padding(
+        return Padding(
             padding: const EdgeInsets.only(right: 30),
             child: SizedBox(
               // width: screenWidth!*0.19,
               child: Padding(
-                padding: EdgeInsets.only(top: screenHeight!*0.045, bottom: screenHeight!*0.035),
-                child: Container(
+                padding: EdgeInsets.only(top: 40, bottom: 25),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutePath.routeToCoinScreen);
+                  },
+                  child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(9),
                       color: AppColor.cardcolor,
