@@ -22,7 +22,7 @@ Widget CustomAppbar(BuildContext context){
         onPressed: () {
           Scaffold.of(context).openDrawer();
         },
-        icon: const Icon(Icons.menu, color: AppColor.arrowcolor),
+        icon: const Icon(Icons.menu, color: AppColor.buttoncolor),
         alignment: Alignment.centerLeft,
       ),
     ),
