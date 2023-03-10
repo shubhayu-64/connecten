@@ -47,6 +47,26 @@ class Menu extends ConsumerWidget {
                 icon: Icons.people,
                 onPressed: () => onItemPressed(context, index: 1),
               ),
+
+              _userDetails.when(
+                data: (data) {
+                  return data.isPrivate
+                      ? Column(
+                        children: [
+                          SizedBox(
+                            height: screenHeight! * 0.03,
+                          ),
+                          DrawerItem(
+                              name: 'Connect Requests',
+                              icon: Icons.connect_without_contact_rounded,
+                              onPressed: () => onItemPressed(context, index: 4)),
+                        ],
+                      )
+                      : Container();
+                },
+                loading: () => Container(),
+                error: (error, stack) => Container(),
+              ),
               SizedBox(
                 height: screenHeight! * 0.03,
               ),
@@ -83,11 +103,12 @@ class Menu extends ConsumerWidget {
                         context, RoutePath.routeToLoginScreen);
                   }),
 
-              Padding(
-                padding: EdgeInsets.only(top: screenHeight! * 0.05, bottom:20),
-                child: Image.network("https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${_userDetails.value!.uid}"),
-              ),
-              Text("Scan to build connections", style: TextStyle(fontSize: 14),),
+              // Padding(
+              //   padding: EdgeInsets.only(top: screenHeight! * 0.05, bottom:20),
+              //   child: Image.network("https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${_userDetails.value!.uid}"),
+              // ),
+              // Text("Scan to build connections", style: TextStyle(fontSize: 14),),
+              Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -116,35 +137,38 @@ class Menu extends ConsumerWidget {
                       ))
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        launchExternalUrl(
-                            "https://pages.flycricket.io/connecten/terms.html");
-                      },
-                      child: Text(
-                        "Terms & Conditions",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            fontSize: 10),
-                      )),
-                  SizedBox(width: screenWidth! * 0.02),
-                  TextButton(
-                      onPressed: () async {
-                        launchExternalUrl(
-                            "https://pages.flycricket.io/connecten/privacy.html");
-                      },
-                      child: Text(
-                        "Privacy Policy",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            fontSize: 10),
-                      )),
-                ],
+              Padding(
+                padding: EdgeInsets.only(bottom: screenHeight! * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          launchExternalUrl(
+                              "https://pages.flycricket.io/connecten/terms.html");
+                        },
+                        child: Text(
+                          "Terms & Conditions",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 10),
+                        )),
+                    SizedBox(width: screenWidth! * 0.02),
+                    TextButton(
+                        onPressed: () async {
+                          launchExternalUrl(
+                              "https://pages.flycricket.io/connecten/privacy.html");
+                        },
+                        child: Text(
+                          "Privacy Policy",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 10),
+                        )),
+                  ],
+                ),
               )
             ],
           ),
@@ -171,6 +195,10 @@ class Menu extends ConsumerWidget {
 
       case 3:
         Navigator.pushNamed(context, RoutePath.routeToQRScreen);
+        break;
+
+      case 4:
+        Navigator.pushNamed(context, RoutePath.routeToConnectReqScreen);
         break;
     }
   }

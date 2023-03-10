@@ -1,4 +1,5 @@
 import 'package:ConnecTen/CoinScreen/coin_screen.dart';
+import 'package:ConnecTen/ConnectReqScreen/connect_req_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ConnecTen/ConnectionScreen/connection_screen.dart';
 import 'package:ConnecTen/Handler/auth_handler.dart';
@@ -36,6 +37,10 @@ abstract class AppRoute {
 
       case RoutePath.routeToConnectionScreen:
         currentWidget = const Connections();
+        break;
+
+      case RoutePath.routeToConnectReqScreen:
+        currentWidget = const ConnectReqScreen();
         break;
 
       case RoutePath.routeToQRScreen:

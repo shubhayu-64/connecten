@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.fromLTRB(30, 0, 30, 25),
-                height: screenHeight! * 0.35,
+                height: screenHeight! * 0.38,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: AppColor.primarybgcolor,
@@ -52,6 +52,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ));
   }
+
 }
 
 class LockButton extends ConsumerWidget {

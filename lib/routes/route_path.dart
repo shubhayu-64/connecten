@@ -8,4 +8,5 @@ abstract class RoutePath {
   static const routeToConnectionScreen = 'connection-screen';
   static const routeToQRScreen = 'qr-screen';
   static const routeToCoinScreen = 'coin-screen';
+  static const routeToConnectReqScreen = 'connect-req-screen';
 }
