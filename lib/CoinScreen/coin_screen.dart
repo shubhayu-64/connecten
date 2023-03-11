@@ -46,7 +46,7 @@ class CoinScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(30, 0, 30, 25),
+              margin: EdgeInsets.fromLTRB(30, 20, 30, 25),
               height: screenHeight! * 0.35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
