@@ -89,7 +89,7 @@ class ConnectionNotifier extends ChangeNotifier {
                       final UserModel user =
                           UserModel.fromMap(data as Map<String, dynamic>?);
                       print(user);
-                      int factor = int.parse(decodeBody[2]);
+                      int factor = int.parse(decodeBody[2].toString());
                       user.coins += 100 % factor;
                       _userCollection
                           .doc(uid)
