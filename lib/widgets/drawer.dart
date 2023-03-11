@@ -26,6 +26,38 @@ class Menu extends ConsumerWidget {
           child: Column(
             children: [
               HeaderWidget(),
+              SizedBox(
+                height: screenHeight! * 0.03,
+              ),
+              Container(
+                padding: EdgeInsets.all(screenHeight! * 0.01),
+                width: screenWidth! * 0.4,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.grey.withOpacity(0.4),
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.qr_code_scanner_rounded,
+                        size: 14, color: Colors.black87),
+                    SizedBox(
+                      width: screenWidth! * 0.005,
+                    ),
+                    const Text(
+                      "Burst Mode",
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: screenHeight! * 0.03),
                 child: const Divider(
@@ -108,6 +140,7 @@ class Menu extends ConsumerWidget {
               //   child: Image.network("https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${_userDetails.value!.uid}"),
               // ),
               // Text("Scan to build connections", style: TextStyle(fontSize: 14),),
+
               Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

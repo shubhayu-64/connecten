@@ -59,12 +59,7 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     // context.read(connectionProvider).disconnect();
-        //   },
-        //   child: Lottie.network("https://lottiefiles.com/137084-networking-marketing-agency"),
-        // )
+
     );
   }
 }

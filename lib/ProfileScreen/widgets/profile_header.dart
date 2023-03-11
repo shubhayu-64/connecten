@@ -104,20 +104,16 @@ class ProfileHeaderWidget extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      ElevatedButton(onPressed: (){
 
-                      },
-                          child: Text("Burst", style: TextStyle(color: Colors.white),)
-                      )
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: screenHeight! * 0.03),
-                  child: Lottie.network("https://assets7.lottiefiles.com/packages/lf20_8AJwVq5zHc.json",
-                    repeat: false,
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.only(top: screenHeight! * 0.03),
+                //   child: Lottie.network("https://assets7.lottiefiles.com/packages/lf20_8AJwVq5zHc.json",
+                //     repeat: false,
+                //   ),
+                // ),
               ],
             ),
           );
