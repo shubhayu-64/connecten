@@ -61,9 +61,29 @@ class ConnectionNotifier extends ChangeNotifier {
           final decodeBody = parseString(name);
           if (decodeBody[1] == true) {
             print("Burst Mode Enabled");
+
             if (_connections.contains(decodeBody[0]) == false) {
+              print("Added to Self Connections");
               _connections.add(decodeBody[0]);
             }
+
+            if (_burstDone.contains(name) == false) {
+              print("Added to Burst Done");
+              _burstDone.add(name);
+              toastWidget("Added Burst");
+              if (decodeBody[2] <= 3) {
+                print("Burstinggggggggggggggggggggggggg");
+                disableDiscovery();
+                enableAdvertising(
+                    decodeBody[0], decodeBody[1], decodeBody[2] + 1);
+                await Future.delayed(Duration(seconds: cooldown), () {});
+                disableAdvertising();
+                enableDiscovery(uid, context);
+                print("Doneeeeeeeeeeeeeeeeeeeeeee");
+              }
+            }
+
+            print("Add Moneyyyyyyyy");
             final CollectionReference _userCollection =
                 FirebaseFirestore.instance.collection('users');
             _userCollection.doc(uid).get().then((value) async {
