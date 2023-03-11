@@ -57,36 +57,41 @@ class ConnectionNotifier extends ChangeNotifier {
         onEndpointFound: (id, name, serviceId) async {
           print("ID: $id, Name: $name, ServiceID: $serviceId");
           if (name.split(',').length == 3) {
-            // final decodeBody = parseString(name);
-            // print(decodeBody);
-            // if (_connections.contains(decodeBody[0]) == false) {
-            //   _connections.add(decodeBody[0]);
-            // }
-            // if (_burstDone.contains(name) == false) {
-            //   _burstDone.add(name);
-            //   disableDiscovery();
-            //   enableAdvertising(
-            //       decodeBody[0], decodeBody[1], decodeBody[2] + 1);
-            //   await Future.delayed(Duration(seconds: cooldown), () {});
-            //   disableAdvertising();
-            //   enableDiscovery(uid, context);
+            final decodeBody = parseString(name);
+            toastWidget(
+                "Bursting: " + decodeBody[0] + " Level: " + decodeBody[2]);
 
-            //   final CollectionReference _userCollection =
-            //       FirebaseFirestore.instance.collection('users');
-            //   _userCollection.doc(uid).get().then((value) {
-            //     if (value.exists) {
-            //       final data = value.data();
-            //       print(data);
-            //       if (data != null) {
-            //         final UserModel user =
-            //             UserModel.fromMap(data as Map<String, dynamic>?);
-            //         print(user);
-            //         user.coins += 500;
-            //         Navigator.pushNamed(context, "/burst", arguments: user);
-            //       }
-            //     }
-            //   });
-            // }
+            print(decodeBody);
+            if (_connections.contains(decodeBody[0]) == false) {
+              _connections.add(decodeBody[0]);
+            }
+            if (_burstDone.contains(name) == false) {
+              _burstDone.add(name);
+              if (decodeBody[2] <= 3) {
+                disableDiscovery();
+                enableAdvertising(
+                    decodeBody[0], decodeBody[1], decodeBody[2] + 1);
+                await Future.delayed(Duration(seconds: cooldown), () {});
+                disableAdvertising();
+                enableDiscovery(uid, context);
+
+                final CollectionReference _userCollection =
+                    FirebaseFirestore.instance.collection('users');
+                _userCollection.doc(uid).get().then((value) {
+                  if (value.exists) {
+                    final data = value.data();
+                    print(data);
+                    if (data != null) {
+                      final UserModel user =
+                          UserModel.fromMap(data as Map<String, dynamic>?);
+                      print(user);
+                      int factor = int.parse(decodeBody[2]);
+                      user.coins += 100 % factor;
+                    }
+                  }
+                });
+              }
+            }
           } else {
             if (_connections.contains(name) == false) {
               _connections.add(name);
