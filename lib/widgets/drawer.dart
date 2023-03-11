@@ -45,6 +45,8 @@ class Menu extends ConsumerWidget {
                   cp.enableAdvertising(_authUser.uid, true, 1);
                   await Future.delayed(Duration(seconds: 5), () {});
                   // TODO: Close the drawer and end the advertisement
+                  cp.disableAdvertising();
+                  cp.enableDiscovery(_authUser.uid, context);
                   Navigator.pop(context);
                 }else{
                     toastWidget("Not enough coins");
