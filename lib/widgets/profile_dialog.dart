@@ -39,14 +39,13 @@ Future ProfileDialog(UserModel UserData, UserModel currentUserData, context) => 
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: screenHeight! * 0.01),
-                  child: Text(UserData.connectedList!.length.toString() +
-                      " Connections"),
+                  child: Text("${UserData.connectedList!.length} Connections"),
                 ),
                 SizedBox(
                   height: screenHeight! * 0.03,
                 ),
                 UserData.isPrivate == false || currentUserData.connectedList!.contains(UserData.uid) == true
-                    ? Text(
+                    ? const Text(
                         "Social Links",
                         style: TextStyle(
                           letterSpacing: 1,
@@ -111,7 +110,11 @@ class ConnectButton extends ConsumerWidget {
         if(SenderUserData.requestList!.contains(currentUser.uid) == true) {
            toastWidget("Already Sent");
            Navigator.of(context).pop();
-        }else{
+        }else if(SenderUserData.connectedList!.contains(currentUser.uid) == true){
+          toastWidget("Already Connected");
+          Navigator.of(context).pop();
+        }
+        else{
           toastWidget("Connection Request Sent");
           SenderUserData.requestList!.add(currentUser.uid);
           await _databaseProvider.updateUserData(SenderUserData);

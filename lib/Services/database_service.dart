@@ -15,6 +15,11 @@ class DatabaseService {
     return state.exists;
   }
 
+  Future<String> fetchCurrentUserID() async {
+    return _authUser!.uid;
+    // return _authUser!;
+  }
+
   Stream<UserModel> get userDetails {
     return _userCollection.doc(_authUser!.uid).snapshots().map((snapshot) =>
         UserModel.fromMap(snapshot.data() as Map<String, dynamic>?));

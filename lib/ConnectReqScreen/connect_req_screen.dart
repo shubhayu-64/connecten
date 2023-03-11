@@ -122,7 +122,7 @@ class ConnectReqItem extends ConsumerWidget{
                   UserModel currentuserdata = _currentuserdata.value!;
                   print("Test");
                   // currentuserdata.requestList!.remove(userData.uid);
-                  if(currentuserdata.connectedList!.contains(userData.uid)== true) {
+                  if(userData.connectedList!.contains(currentuserdata.uid)== true) {
                     toastWidget("Already Connected");
                   } else {
                     userData.connectedList!.add(currentuserdata.uid);
