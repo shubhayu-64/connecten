@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.fromLTRB(30, 20, 30, 25),
-                height: screenHeight! * 0.38,
+                height: screenHeight! * 0.4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: AppColor.primarybgcolor,
