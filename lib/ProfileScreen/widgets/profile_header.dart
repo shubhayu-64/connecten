@@ -103,7 +103,6 @@ class ProfileHeaderWidget extends ConsumerWidget {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -118,6 +117,7 @@ class ProfileHeaderWidget extends ConsumerWidget {
           );
         });
   }
+
   Future<void> _showQRDialog(BuildContext context, UserModel userData) async {
     return showDialog<void>(
       context: context,
@@ -135,14 +135,18 @@ class ProfileHeaderWidget extends ConsumerWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.all(0),
-                    child: Image.network("https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${userData.uid}",
-                    height: screenHeight!*0.25,
-                    fit: BoxFit.fitHeight,
+                    child: Image.network(
+                      "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${userData.uid}",
+                      height: screenHeight! * 0.25,
+                      fit: BoxFit.fitHeight,
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(10),
-                    child: Text("Scan to build connections", style: TextStyle(fontSize: 14),),
+                    child: Text(
+                      "Scan to build connections",
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ),
                 ],
               ),
