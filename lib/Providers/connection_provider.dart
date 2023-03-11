@@ -1,4 +1,5 @@
 import 'package:ConnecTen/Models/user_models.dart';
+import 'package:ConnecTen/Services/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -59,7 +60,10 @@ class ConnectionNotifier extends ChangeNotifier {
           // toastWidget("Recieved ");
           final decodeBody = parseString(name);
           if (decodeBody[1] == true) {
-            print("----------------------------> TRUE ");
+            print("Burst Mode Enabled");
+            if (_connections.contains(decodeBody[0]) == false) {
+              _connections.add(decodeBody[0]);
+            }
             final CollectionReference _userCollection =
                 FirebaseFirestore.instance.collection('users');
             _userCollection.doc(uid).get().then((value) async {
@@ -69,9 +73,7 @@ class ConnectionNotifier extends ChangeNotifier {
                   final UserModel user =
                       UserModel.fromMap(data as Map<String, dynamic>?);
                   user.coins += 100;
-                  await _userCollection
-                      .doc(uid)
-                      .update(user as Map<String, dynamic>);
+                  await DatabaseService().updateUserData(user);
                 }
               }
             });
@@ -160,6 +162,20 @@ class ConnectionNotifier extends ChangeNotifier {
       } on PlatformException catch (exception) {
         print(exception);
       }
+      final CollectionReference _userCollection =
+          FirebaseFirestore.instance.collection('users');
+      _userCollection.doc(uid).get().then((value) async {
+        print("Deduiction Moneyyyyyy");
+        if (value.exists) {
+          final data = value.data();
+          if (data != null) {
+            final UserModel user =
+                UserModel.fromMap(data as Map<String, dynamic>?);
+            user.coins -= 500;
+            await DatabaseService().updateUserData(user);
+          }
+        }
+      });
     } else {
       final encodeData = "$uid,$burst,$level";
       print(encodeData);
