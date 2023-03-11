@@ -1,4 +1,6 @@
+import 'package:ConnecTen/Models/user_models.dart';
 import 'package:ConnecTen/Providers/connection_provider.dart';
+import 'package:ConnecTen/utils/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ConnecTen/Providers/auth_providers.dart';
@@ -35,12 +37,18 @@ class Menu extends ConsumerWidget {
               ),
               InkWell(
                 onTap: () async {
+                  UserModel userData = _userDetails.value!;
+
+                  if(userData.coins >= 500){
                   print("Burst Mode");
                   cp.disableDiscovery();
                   cp.enableAdvertising(_authUser.uid, true, 1);
                   await Future.delayed(Duration(seconds: 5), () {});
                   // TODO: Close the drawer and end the advertisement
                   Navigator.pop(context);
+                }else{
+                    toastWidget("Not enough coins");
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.all(screenHeight! * 0.01),
