@@ -56,6 +56,7 @@ class ConnectionNotifier extends ChangeNotifier {
         strategy,
         onEndpointFound: (id, name, serviceId) async {
           print("ID: $id, Name: $name, ServiceID: $serviceId");
+          toastWidget("Recieved name");
           if (name.split(',').length == 3) {
             final decodeBody = parseString(name);
             toastWidget(
@@ -67,6 +68,7 @@ class ConnectionNotifier extends ChangeNotifier {
             }
             if (_burstDone.contains(name) == false) {
               _burstDone.add(name);
+              toastWidget("Added Burst");
               if (decodeBody[2] <= 3) {
                 disableDiscovery();
                 enableAdvertising(

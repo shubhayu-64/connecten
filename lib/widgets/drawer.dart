@@ -34,9 +34,11 @@ class Menu extends ConsumerWidget {
                 height: screenHeight! * 0.03,
               ),
               InkWell(
-                onTap: () {
+                onTap: () async {
+                  print("Burst Mode");
                   cp.disableDiscovery();
                   cp.enableAdvertising(_authUser.uid, true, 1);
+                  await Future.delayed(Duration(seconds: 5), () {});
                   // TODO: Close the drawer and end the advertisement
                   Navigator.pop(context);
                 },
