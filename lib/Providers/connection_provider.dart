@@ -57,8 +57,9 @@ class ConnectionNotifier extends ChangeNotifier {
         strategy,
         onEndpointFound: (id, name, serviceId) async {
           print("ID: $id, Name: $name, ServiceID: $serviceId");
-          // toastWidget("Recieved ");
+          // toastWidget("Recieved at level" + );
           final decodeBody = parseString(name);
+          toastWidget("Recieved at level" + decodeBody[2].toString());
           if (decodeBody[1] == true) {
             print("Burst Mode Enabled");
 
