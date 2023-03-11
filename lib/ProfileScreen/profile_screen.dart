@@ -20,40 +20,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-        drawer: const Menu(),
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(screenHeight! * 0.08),
-          child: CustomAppbar(context),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(30, 20, 30, 25),
-                height: screenHeight! * 0.4,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppColor.primarybgcolor,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 20.0,
-                    ),
-                  ],
-                ),
-                child: Stack(
-                  children: [
-
-                    ToggleButton(),
-                    // LockButton(),
-                    //Stack 2
-                    const ProfileHeaderWidget(),
-
-                  ],
-                ),
-=======
       drawer: const Menu(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(screenHeight! * 0.12),
@@ -75,7 +41,6 @@ class ProfileScreen extends StatelessWidget {
                     blurRadius: 20.0,
                   ),
                 ],
->>>>>>> 125644c (burst implement)
               ),
               child: Stack(
                 children: [
@@ -90,18 +55,7 @@ class ProfileScreen extends StatelessWidget {
             socialCard(context),
           ],
         ),
-<<<<<<< HEAD
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, RoutePath.routeToFormScreen);
-          },
-          child: const Icon(Icons.edit),
-          backgroundColor: AppColor.buttoncolor,
-        )
-
-=======
       ),
->>>>>>> 125644c (burst implement)
     );
   }
 }

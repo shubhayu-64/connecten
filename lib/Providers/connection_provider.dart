@@ -56,11 +56,13 @@ class ConnectionNotifier extends ChangeNotifier {
         strategy,
         onEndpointFound: (id, name, serviceId) async {
           print("ID: $id, Name: $name, ServiceID: $serviceId");
-          toastWidget("Recieved name");
+          toastWidget("Recieved ");
           if (name.split(',').length == 3) {
             final decodeBody = parseString(name);
-            toastWidget(
-                "Bursting: " + decodeBody[0] + " Level: " + decodeBody[2]);
+            toastWidget("Bursting: " +
+                decodeBody[0].toString() +
+                " Level: " +
+                decodeBody[2].toString());
 
             print(decodeBody);
             if (_connections.contains(decodeBody[0]) == false) {
