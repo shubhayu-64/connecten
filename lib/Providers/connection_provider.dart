@@ -1,3 +1,5 @@
+import 'package:ConnecTen/Models/user_models.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +20,10 @@ class ConnectionNotifier extends ChangeNotifier {
   final Strategy strategy = Strategy.P2P_STAR;
 
   List<String> _connections = [];
+  // List<String> _burstWaitingQueue = [];
+  List<String> _burstDone = [];
   List<String> get connections => _connections;
+  int cooldown = 5;
 
   ConnectionNotifier() {
     checkPermissions();
@@ -49,14 +54,39 @@ class ConnectionNotifier extends ChangeNotifier {
       bool a = await Nearby().startDiscovery(
         uid!,
         strategy,
-        onEndpointFound: (id, name, serviceId) {
+        onEndpointFound: (id, name, serviceId) async {
           print("ID: $id, Name: $name, ServiceID: $serviceId");
           if (name.split(',').length == 3) {
-            final decodeBody = parseString(name);
-            print(decodeBody);
-            if (_connections.contains(decodeBody[0]) == false) {
-              _connections.add(decodeBody[0]);
-            }
+            // final decodeBody = parseString(name);
+            // print(decodeBody);
+            // if (_connections.contains(decodeBody[0]) == false) {
+            //   _connections.add(decodeBody[0]);
+            // }
+            // if (_burstDone.contains(name) == false) {
+            //   _burstDone.add(name);
+            //   disableDiscovery();
+            //   enableAdvertising(
+            //       decodeBody[0], decodeBody[1], decodeBody[2] + 1);
+            //   await Future.delayed(Duration(seconds: cooldown), () {});
+            //   disableAdvertising();
+            //   enableDiscovery(uid, context);
+
+            //   final CollectionReference _userCollection =
+            //       FirebaseFirestore.instance.collection('users');
+            //   _userCollection.doc(uid).get().then((value) {
+            //     if (value.exists) {
+            //       final data = value.data();
+            //       print(data);
+            //       if (data != null) {
+            //         final UserModel user =
+            //             UserModel.fromMap(data as Map<String, dynamic>?);
+            //         print(user);
+            //         user.coins += 500;
+            //         Navigator.pushNamed(context, "/burst", arguments: user);
+            //       }
+            //     }
+            //   });
+            // }
           } else {
             if (_connections.contains(name) == false) {
               _connections.add(name);
