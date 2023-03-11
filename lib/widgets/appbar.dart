@@ -10,15 +10,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Widget CustomAppbar(BuildContext context){
   return AppBar(
-    toolbarHeight: screenHeight! * 0.12,
-    automaticallyImplyLeading: false,
+    // toolbarHeight: screenHeight! * 0.16,
+    // automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
     // shadowColor: AppColor.primarybgcolor,
     elevation: 0.0,
     leading: Builder(
       builder: (context) => IconButton(
         splashRadius: 1,
-        padding: const EdgeInsets.fromLTRB(30, 40, 0, 25),
+        padding: EdgeInsets.fromLTRB(30,0,0,0),
         onPressed: () {
           Scaffold.of(context).openDrawer();
         },
@@ -42,43 +42,40 @@ class DisplayCoin extends ConsumerWidget {
     return _databaseUser.when(
       data: (data) {
         return Padding(
-            padding: const EdgeInsets.only(right: 30),
+            padding: EdgeInsets.only(right: 30, bottom: 10, top: 10),
             child: SizedBox(
               // width: screenWidth!*0.19,
-              child: Padding(
-                padding: EdgeInsets.only(top: 40, bottom: 25),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, RoutePath.routeToCoinScreen);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(9),
-                      color: AppColor.cardcolor,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left:5.0),
-                          child: CircleAvatar(
-                            radius: 11,
-                            backgroundColor: AppColor.buttoncolor,
-                            foregroundImage: AssetImage(ImageAsset.coinlogo, ),
-                          ),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutePath.routeToCoinScreen);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(9),
+                    color: AppColor.cardcolor,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left:5.0),
+                        child: CircleAvatar(
+                          radius: 11,
+                          backgroundColor: AppColor.buttoncolor,
+                          foregroundImage: AssetImage(ImageAsset.coinlogo, ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Text(data.coins.toString(), style: TextStyle(
-                            fontSize: 11,
-                            color: Colors.black,
-                          ),),
-                        ),
-                      ],
-                    )
-                ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.0),
+                        child: Text(data.coins.toString(), style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.black,
+                        ),),
+                      ),
+                    ],
+                  )
               ),
-            ),
+              ),
           ),
         );
       },

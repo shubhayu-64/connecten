@@ -1,5 +1,6 @@
 import 'package:ConnecTen/CoinScreen/coin_screen.dart';
 import 'package:ConnecTen/ConnectReqScreen/connect_req_screen.dart';
+import 'package:ConnecTen/FormScreen/form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ConnecTen/ConnectionScreen/connection_screen.dart';
 import 'package:ConnecTen/Handler/auth_handler.dart';
@@ -21,6 +22,10 @@ abstract class AppRoute {
 
       case RoutePath.routeToLoginScreen:
         currentWidget = const AuthHandler();
+        break;
+
+      case RoutePath.routeToFormScreen:
+        currentWidget = FormScreen();
         break;
 
       case RoutePath.routeToProfileScreen:

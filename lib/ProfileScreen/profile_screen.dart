@@ -1,6 +1,7 @@
 import 'package:ConnecTen/ProfileScreen/widgets/toggle_button.dart';
 import 'package:ConnecTen/Providers/auth_providers.dart';
 import 'package:ConnecTen/Providers/connection_provider.dart';
+import 'package:ConnecTen/routes/route_path.dart';
 import 'package:ConnecTen/utils/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +13,6 @@ import 'package:ConnecTen/utils/size_config.dart';
 import 'package:ConnecTen/widgets/appbar.dart';
 import 'package:ConnecTen/widgets/drawer.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:lottie/lottie.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
         drawer: const Menu(),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(screenHeight! * 0.12),
+          preferredSize: Size.fromHeight(screenHeight! * 0.08),
           child: CustomAppbar(context),
         ),
         body: SingleChildScrollView(
@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.fromLTRB(30, 20, 30, 25),
-                height: screenHeight! * 0.43,
+                height: screenHeight! * 0.38,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: AppColor.primarybgcolor,
@@ -59,6 +59,13 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, RoutePath.routeToFormScreen);
+          },
+          child: const Icon(Icons.edit),
+          backgroundColor: AppColor.buttoncolor,
+        )
 
     );
   }
@@ -85,7 +92,7 @@ class LockButton extends ConsumerWidget {
             ToggleSwitch(
               minWidth: screenWidth! * 0.16,
               minHeight: screenHeight! * 0.04,
-              activeBgColors: [
+              activeBgColors: const [
                 [AppColor.buttoncolor],
                 [AppColor.buttoncolor]
               ],
@@ -104,31 +111,31 @@ class LockButton extends ConsumerWidget {
                     : toastWidget("Profile Unlocked");
               },
             ),
-            _userDetails.when(
-              loading: () {
-                return const Scaffold(
-                  body: Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blue,
-                    ),
-                  ),
-                );
-              },
-              error: (err, stack) => Text('Error: $err'),
-              data: (currentUser) => ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        currentUser.coins >= 500 ? Colors.blue : Colors.grey,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  onPressed: () {
-                    cp.disableDiscovery();
-                    cp.enableAdvertising(_authUser.uid, false, null);
-                  },
-                  child: Text("BURST")),
-            ),
+            // _userDetails.when(
+            //   loading: () {
+            //     return const Scaffold(
+            //       body: Center(
+            //         child: CircularProgressIndicator(
+            //           color: Colors.blue,
+            //         ),
+            //       ),
+            //     );
+            //   },
+            //   error: (err, stack) => Text('Error: $err'),
+            //   data: (currentUser) => ElevatedButton(
+            //       style: ElevatedButton.styleFrom(
+            //         backgroundColor:
+            //             currentUser.coins >= 500 ? Colors.blue : Colors.grey,
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(10.0),
+            //         ),
+            //       ),
+            //       onPressed: () {
+            //         cp.disableDiscovery();
+            //         cp.enableAdvertising(_authUser.uid, false, null);
+            //       },
+            //       child: Text("BURST")),
+            // ),
             // Icon(userData.isPrivate ? Icons.lock_rounded : Icons.lock_open_rounded,
             //   color: userData.isPrivate ? Colors.black : AppColor.secbgcolor,
             // ),
@@ -154,7 +161,7 @@ class LockButton extends ConsumerWidget {
       },
       error: (err, stack) => Text('Error: $err'),
       loading: () {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(
             color: Colors.blue,
           ),
