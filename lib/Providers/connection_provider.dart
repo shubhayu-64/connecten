@@ -87,6 +87,9 @@ class ConnectionNotifier extends ChangeNotifier {
                       print(user);
                       int factor = int.parse(decodeBody[2]);
                       user.coins += 100 % factor;
+                      _userCollection
+                          .doc(uid)
+                          .update(user as Map<String, dynamic>);
                     }
                   }
                 });

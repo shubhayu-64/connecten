@@ -20,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
         drawer: const Menu(),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(screenHeight! * 0.08),
@@ -52,13 +53,44 @@ class ProfileScreen extends StatelessWidget {
 
                   ],
                 ),
+=======
+      drawer: const Menu(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(screenHeight! * 0.12),
+        child: CustomAppbar(context),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(30, 20, 30, 25),
+              height: screenHeight! * 0.43,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: AppColor.primarybgcolor,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 20.0,
+                  ),
+                ],
+>>>>>>> 125644c (burst implement)
               ),
-              LockButton(),
-
-              socialCard(context),
-            ],
-          ),
+              child: Stack(
+                children: [
+                  ToggleButton(),
+                  // LockButton(),
+                  //Stack 2
+                  const ProfileHeaderWidget(),
+                ],
+              ),
+            ),
+            LockButton(),
+            socialCard(context),
+          ],
         ),
+<<<<<<< HEAD
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushReplacementNamed(context, RoutePath.routeToFormScreen);
@@ -67,6 +99,9 @@ class ProfileScreen extends StatelessWidget {
           backgroundColor: AppColor.buttoncolor,
         )
 
+=======
+      ),
+>>>>>>> 125644c (burst implement)
     );
   }
 }
