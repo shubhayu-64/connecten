@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ConnecTen/Providers/database_provider.dart';
 import 'package:ConnecTen/utils/assets.dart';
 import 'package:ConnecTen/utils/size_config.dart';
-import 'package:lottie/lottie.dart';
 
 class ProfileHeaderWidget extends ConsumerWidget {
   const ProfileHeaderWidget({super.key});

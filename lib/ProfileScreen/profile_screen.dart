@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       drawer: const Menu(),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(screenHeight! * 0.12),
+        preferredSize: Size.fromHeight(screenHeight! * 0.08),
         child: CustomAppbar(context),
       ),
       body: SingleChildScrollView(
@@ -55,6 +55,13 @@ class ProfileScreen extends StatelessWidget {
             socialCard(context),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, RoutePath.routeToFormScreen);
+        },
+        child: const Icon(Icons.edit),
+        backgroundColor: AppColor.buttoncolor,
       ),
     );
   }
