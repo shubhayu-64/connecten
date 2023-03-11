@@ -1,4 +1,5 @@
 
+import 'package:ConnecTen/Models/user_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ConnecTen/Providers/database_provider.dart';
@@ -53,9 +54,7 @@ class Connections extends ConsumerWidget {
                         itemCount: connectedUserData!.length,
                         itemBuilder: (context, i) {
                           return ConnectBox(
-                              connectedUserData[i],
-                              connectedUserData[i].name,
-                              connectedUserData[i].designation, context);
+                              UserData: connectedUserData[i],);
                         },
                       )),
                 ),
@@ -67,48 +66,58 @@ class Connections extends ConsumerWidget {
   }
 }
 
+class ConnectBox extends ConsumerWidget {
+  final UserModel UserData;
+  const ConnectBox({
+    Key? key,
+    required this.UserData,
+  }) : super(key: key);
 
-Widget ConnectBox(allUserData, name, designation, context) {
-  return InkWell(
-    onTap: () {
-      ProfileDialog(allUserData, context);
-    },
-    child: Container(
-        alignment: Alignment.centerLeft,
-        height: screenHeight! * 0.1,
-        padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-        margin: EdgeInsets.only(bottom: 20),
-        decoration: BoxDecoration(
-          color: Color(0xffEEF7FE),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              name,
-              //textAlign: TextAlign.start,
-              style: TextStyle(
-                letterSpacing: 1,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _currentUserdata = ref.watch(userDetailsProvider);
+    UserModel currentUser = _currentUserdata.value!;
+    return InkWell(
+      onTap: () {
+        ProfileDialog(UserData, currentUser, context);
+      },
+      child: Container(
+          alignment: Alignment.centerLeft,
+          height: screenHeight! * 0.1,
+          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+          margin: EdgeInsets.only(bottom: 20),
+          decoration: BoxDecoration(
+            color: Color(0xffEEF7FE),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                UserData.name,
+                //textAlign: TextAlign.start,
+                style: TextStyle(
+                  letterSpacing: 1,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            SizedBox(
-              height: screenHeight! * 0.01,
-            ),
-            Text(
-              designation,
-              //textAlign: TextAlign.start,
-              style: TextStyle(
-                letterSpacing: 1,
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
+              SizedBox(
+                height: screenHeight! * 0.01,
               ),
-            ),
-          ],
-        )
-    ),
-  );
+              Text(
+                UserData.designation!,
+                //textAlign: TextAlign.start,
+                style: TextStyle(
+                  letterSpacing: 1,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ],
+          )
+      ),
+    );
+  }
 }

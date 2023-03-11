@@ -126,6 +126,7 @@ class ConnectReqItem extends ConsumerWidget{
                     toastWidget("Already Connected");
                   } else {
                     userData.connectedList!.add(currentuserdata.uid);
+                    userData.coins = userData.coins + 10;
                     currentuserdata.requestList!.remove(userData.uid);
                     toastWidget("Added to Connections");
                     await _databaseProvider.updateUserData(userData);

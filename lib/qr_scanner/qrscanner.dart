@@ -32,6 +32,8 @@ class _QRScanState extends ConsumerState<QRScan> {
     final databaseUser = ref.watch(databaseProvider);
     final userDetails = ref.watch(userDetailsProvider);
 
+    UserModel user = userDetails.value!;
+
 
     return Scaffold(
       body: QRView(
@@ -65,7 +67,8 @@ class _QRScanState extends ConsumerState<QRScan> {
       controller.pauseCamera();
       DatabaseService().userDetailsWithID(scanData.code!).listen((userData) {
         if (userData != null) {
-          ProfileDialog(userData, context);
+
+          // ProfileDialog(userData, context);
         }
       });
       // final databaseUser = ref.watch(userDetailsWithIdProvider(scanData.code!));
@@ -91,3 +94,13 @@ class _QRScanState extends ConsumerState<QRScan> {
     });
   }
 }
+
+class DialogBox extends StatelessWidget {
+  const DialogBox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+

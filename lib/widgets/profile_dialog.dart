@@ -7,7 +7,7 @@ import 'package:ConnecTen/utils/fluttertoast.dart';
 import 'package:ConnecTen/utils/launch_urls.dart';
 import 'package:ConnecTen/utils/size_config.dart';
 
-Future ProfileDialog(UserModel UserData, context) => showDialog(
+Future ProfileDialog(UserModel UserData, UserModel currentUserData, context) => showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
@@ -45,7 +45,7 @@ Future ProfileDialog(UserModel UserData, context) => showDialog(
                 SizedBox(
                   height: screenHeight! * 0.03,
                 ),
-                UserData.isPrivate == false
+                UserData.isPrivate == false || currentUserData.connectedList!.contains(UserData.uid) == true
                     ? Text(
                         "Social Links",
                         style: TextStyle(
@@ -56,7 +56,7 @@ Future ProfileDialog(UserModel UserData, context) => showDialog(
                         textAlign: TextAlign.left,
                       )
                     : Text(""),
-                UserData.isPrivate == false
+                UserData.isPrivate == false || currentUserData.connectedList!.contains(UserData.uid) == true
                     ? Container(
                         padding: EdgeInsets.all(20),
                         child: Column(
@@ -84,7 +84,7 @@ Future ProfileDialog(UserModel UserData, context) => showDialog(
                           ),
                         ),
                       ),
-                UserData.isPrivate == true ?
+                UserData.isPrivate == true || currentUserData.connectedList!.contains(UserData.uid) == false?
                 ConnectButton(SenderUserData: UserData):Container(),
 
               ],

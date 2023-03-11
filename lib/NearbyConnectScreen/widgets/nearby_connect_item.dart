@@ -23,7 +23,7 @@ class NearbyConnectItem extends ConsumerWidget {
 
     return InkWell(
         onTap: () {
-          ProfileDialog(senderUserData, context);
+          ProfileDialog(senderUserData, currentUser, context);
         },
         child: Container(
             alignment: Alignment.center,
